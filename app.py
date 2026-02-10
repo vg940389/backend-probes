@@ -6,8 +6,17 @@ app = Flask(__name__)
 @app.route('/api/hello')
 def hello_world():
     """Returns Hello, EDP!"""
-    return 'Hello, EDP!'
+    return "Hello, KubeRocketCI!"
 
+# Readiness probe – controls traffic
+@app.route('/api/readiness')
+def readiness():
+    return jsonify(status="readiness-ok"), 200
+
+# Liveness probe – controls restart
+@app.route('/api/liveness')
+def liveness():
+    return jsonify(status="liveness-ok"), 200
 
 if __name__ == '__main__':
     app.run()
